@@ -3,17 +3,14 @@ import psycopg
 connection = psycopg.connect(
     host = "localhost",
     port = 5432,
-    dbname = finserve,
+    dbname = "finserve",
     user = "user",
     password = ""
 )
 
 try: 
     with connection.cursor() as cursor:
-        cursor.execute(
-            "SELECT name, email, phone
-            FROM customers"
-        ) 
+        cursor.execute("SELECT name, email, phone FROM customers WHERE name LIKE 'C%'") 
 
         customers = cursor.fetchall()
 
