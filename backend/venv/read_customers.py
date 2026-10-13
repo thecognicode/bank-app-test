@@ -7,3 +7,18 @@ connection = psycopg.connect(
     user = "user",
     password = ""
 )
+
+try: 
+    with connection.cursor() as cursor:
+        cursor.execute(
+            "SELECT name, email, phone
+            FROM customers"
+        ) 
+
+        customers = cursor.fetchall()
+
+        for customer in customers:
+            print(customer)
+
+finally:
+    connection.close()
